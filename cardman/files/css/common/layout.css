@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+@import "base.css";
+
+/*------------------------------------------------------------------------
+	All
+/*-----------------------------------------------------------------------*/
+html,
+body {
+	height:100%;
+	background:#eeefef;
+	color: #000;
+	font-size:16px;
+}
+
+#all {
+	overflow:hidden;
+	position:relative;
+	width:960px;
+	margin: 60px auto;
+}
+
+	#all div,
+	#all img {
+		position:relative;
+	}
+
+	#all .wrap {
+		max-width:960px;
+		margin:0 auto;
+	}
+
+	#all .text {
+		text-align:justify;
+		text-justify:inter-ideograph;
+	}

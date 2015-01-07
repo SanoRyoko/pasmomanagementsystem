@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta name="robots" content="all" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+
+<title>Pasmo Management System</title>
+
+<link href="files/css/style.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+<div id="all">
+  <div id="side">
+    <div class="ttl">
+      <h1><img src="files/img/common/h1.png" height="170" width="205" alt="PASMO MANAGEMENT SYSTEM"></h1>
+      <p>This is Pasmo Management System. Please click on the right side cards when you rent a card. Also, when you return the card, please click on the "RETURN PASMO" button.</p>
+    </div>
+    <div id="information">
+      <h2><img src="files/img/common/h2.png" height="25" width="155" alt="YOUR STATUS"></h2>
+      <dl class="id">
+        <dt>YOUR ID:</dt>
+        <dd>{{ user.username }}</dd>
+      </dl>
+      <dl class="status">
+        <dt>YOUR STATUS:</dt>
+                {% if my_allocation %}
+          <dd>busy</dd>
+                {% else %}
+          <dd>active</dd>
+                {% endif %}
+      </dl>
+      {% if my_allocation %}
+      <dl class="number">
+        <dt>YOUR PASMO NUMBER:</dt>
+        <dd>{{ my_allocation }}</dd>
+      </dl>
+      {% endif %}
+      <div id="dealloc-stock">
+        {% if my_allocation %}
+        <p class="button fade"><img src="files/img/common/button.png" height="40" width="160" alt="RETURN YOUR PASMO"/></p>
+        <form method="POST" action="/dealloc/{{ my_allocation.get_stock_id }}">
+          {% csrf_token %}
+          <input type="hidden" name="redirect_to" value="/?template=index.html" />
+        </form>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div id="main">
+    <ul id="list">
+      {% for stock in stocks %}
+        <li class="{% if stock.is_allocated %}busy{% else %}active{% endif %} alloc-stock fade" id="{{ stock.id }}">
+              <form method="POST" action="/alloc/{{ stock.id }}">
+                {% csrf_token %}
+                <input type="hidden" name="redirect_to" value="/?template=index.html" />
+              </form>
+          <p class="tag"><!-- this is tag --></p>
+          <p class="number">{{ stock.name }}</p>
+                {% if stock.is_allocated %}
+          <dl class="status">
+            <dt>user:</dt>
+            <dd>{{ stock.allocated_username }}</dd>
+          </dl>
+              {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<script src="files/js/common/base.js" type="text/javascript" charset="UTF-8"></script>
+<script src="files/js/script.js" type="text/javascript" charset="UTF-8"></script>
+
+</body>
+</html>

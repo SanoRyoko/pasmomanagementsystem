@@ -1,0 +1,130 @@
+@charset "UTF-8";
+
+@import "common/layout.css";
+@import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400);
+
+/*-------------------------------------------------------------------------
+	Side
+/*-----------------------------------------------------------------------*/
+#side {
+	float: left;
+	width: 240px;
+	margin-right: 40px;
+}
+
+	#side .ttl {
+		margin-bottom: 100px;
+	}
+
+		#side .ttl h1 {
+			margin-bottom: 30px;
+		}
+
+		#side .ttl p {
+			word-break: normal;
+			font-family: 'Yanone Kaffeesatz', sans-serif;
+		}
+
+/*-------------------------------------------------------------------------
+	Information
+/*-----------------------------------------------------------------------*/
+#information {}
+
+	#information h2 {
+		margin-bottom: 20px;
+		padding-bottom: 10px;
+		border-bottom: 2px solid #000;
+	}
+
+	#information dl {
+		margin-bottom: 20px;
+	}
+
+		#information dl dt,
+		#information dl dd {
+			float: left;
+			font-family: 'Yanone Kaffeesatz', sans-serif;
+		}
+
+	#information p.button {
+		width: 160px;
+		margin: 20px auto 0 auto;
+		cursor:pointer;
+	}
+
+/*-------------------------------------------------------------------------
+	Main
+/*-----------------------------------------------------------------------*/
+#main {
+	float: left;
+	width: 680px;
+}
+
+/*-------------------------------------------------------------------------
+	List
+/*-----------------------------------------------------------------------*/
+#list {
+	display:none;
+}
+
+	#list li {
+		position: relative;
+		float: left;
+		width: 160px;
+		height: 260px;
+		margin: 0 40px 40px 0;
+		padding: 20px;
+		border-radius: 8px;
+		-webkit-border-radius: 8px;
+		-moz-border-radius: 8px;
+		background: #fff;
+		cursor: pointer;
+		font-family: 'Yanone Kaffeesatz', sans-serif;
+	}
+
+	#list li:nth-child(3n) {
+		margin-right:0;
+	}
+
+	#list li.active {
+	}
+
+	#list li.busy {
+		background: #666;
+		color: #fff;
+	}
+
+		#list li p.tag {
+			position: absolute;
+			left: 50%;
+			top: 0;
+			-webkit-transform: translate(-50%);
+			-moz-transform: translate(-50%);
+			transform: translate(-50%);
+			width: 80px;
+			height: 8px;
+		}
+
+		#list li.active p.tag {
+			background: #eb5271;
+		}
+
+		#list li p.number {
+			font-size: 200%;
+			color : #eb5271;
+		}
+
+		#list li.busy p.number {
+			color: #46d9e6;
+		}
+
+		#list li.busy p.tag {
+			background: #46d9e6;
+		}
+
+		#list li dl {}
+
+			#list li dl dt,
+			#list li dl dd {
+				float: left;
+			}
